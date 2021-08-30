@@ -3,6 +3,9 @@ import React, {useState} from 'react';
 import { Navbar, Container, Nav, NavDropdown} from 'react-bootstrap';
 import './App.css';
 import Data from './data.js';
+import Detail from './Detail.js';
+
+import { Link, Route, Switch } from 'react-router-dom';
 
 function App() {
 
@@ -16,8 +19,8 @@ function App() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
+              <Nav.Link><Link to="/">Home</Link></Nav.Link>
+              <Nav.Link><Link to="/detail">Detail</Link></Nav.Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -29,18 +32,30 @@ function App() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Jumbotron></Jumbotron>
-      <div className="container">
-        <div className="row">
-        {
-          shoes.map(function(a,i){
-            return (
-              <Shoes i = {i}></Shoes>
-            );
-          })
-        }
-        </div>
-      </div>
+      
+      <Switch>
+        <Route path="/">
+          <Jumbotron></Jumbotron>
+          <div className="container">
+            <div className="row">
+            {
+              shoes.map(function(a,i){
+                return (
+                  <Shoes i = {i}></Shoes>
+                );
+              })
+            }
+            </div>
+          </div>
+        </Route>
+        <Route path="/detail">
+          <Detail/>
+        </Route>
+        <Route path="/:id">
+          아무거나 적었을 때 이거 보여주셈
+        </Route>
+        {/* <Route component = {Modal}></Route> */}
+      </Switch>
     </div>
   );
 }
@@ -60,5 +75,6 @@ function Shoes(props){
     </div>
   )
 }
+
 
 export default App;
