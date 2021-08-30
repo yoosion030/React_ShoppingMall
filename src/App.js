@@ -33,29 +33,24 @@ function App() {
         </Container>
       </Navbar>
       
-      <Switch>
-        <Route path="/">
-          <Jumbotron></Jumbotron>
-          <div className="container">
-            <div className="row">
-            {
-              shoes.map(function(a,i){
-                return (
-                  <Shoes i = {i}></Shoes>
-                );
-              })
-            }
-            </div>
+
+      <Route  exact path="/">
+        <Jumbotron></Jumbotron>
+        <div className="container">
+          <div className="row">
+          {
+            shoes.map(function(a,i){
+              return (
+                <Shoes i = {i}></Shoes>
+              );
+            })
+          }
           </div>
-        </Route>
-        <Route path="/detail">
-          <Detail/>
-        </Route>
-        <Route path="/:id">
-          아무거나 적었을 때 이거 보여주셈
-        </Route>
-        {/* <Route component = {Modal}></Route> */}
-      </Switch>
+        </div>
+      </Route>
+      <Route path="/detail/:id">
+        <Detail shoes={shoes}/>
+      </Route>
     </div>
   );
 }
