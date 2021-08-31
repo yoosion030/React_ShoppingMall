@@ -1,5 +1,6 @@
 
 import { findByTestId } from '@testing-library/react';
+import { useState,useEffect } from 'react';
 import { useHistory,useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import './Detail.scss';
@@ -14,7 +15,16 @@ let Title = styled.h4`
 `;
 
 
+
 function Detail(props){
+
+  let [alert,alertRevise] = useState(true);
+  let [answer,answerRevise] = useState();
+  useEffect(()=>{
+    setTimeout(()=>{
+      alertRevise(false);
+    },2000)
+  });
 
   let { id } = useParams();
   let history = useHistory();
@@ -26,6 +36,14 @@ function Detail(props){
         <Box>
           <Title className="red">Detail</Title>
         </Box>
+        {
+          alert === true
+          ? (
+            <div className="alert">
+              <p>재고가 얼마 남지 않았습니다.</p>
+            </div>)
+          : null
+        }
         <div className="col-md-6">
           <img src={'https://codingapple1.github.io/shop/shoes'+ id + '.jpg'} width="100%" />
         </div>
@@ -40,7 +58,7 @@ function Detail(props){
         </div>
       </div>
     </div>  
-    );
-  }
+  );
+}
 
 export default Detail;
