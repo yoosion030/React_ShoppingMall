@@ -11,6 +11,7 @@ import axios from 'axios';
 function App() {
 
   let [shoes,shoesRevise] = useState(Data);
+
   return (
     <div className="App">
       <Navbar bg="light" expand="lg">
@@ -42,7 +43,7 @@ function App() {
             shoes.map(function(a,i){
               return (
                   <Link to={'/detail/'+ i} className="shoes">
-                    <Shoes i = {i} ></Shoes>
+                    <Shoes shoes={shoes[i]} i={i}></Shoes>
                   </Link>
               );
             })
@@ -51,13 +52,10 @@ function App() {
           <button className="btn btn-primary" onClick={()=> {
             axios.get('https://codingapple1.github.io/shop/data2.json')
             .then((result)=>{
-              console.log('성공');
-              return(
-                <div>안녕</div>
-              );
+              shoesRevise( [...shoes, ...result.data] );
             })
             .catch(()=>{
-              console.log('실패');
+
             })
           }}>더보기</button>
         </div>
@@ -78,12 +76,13 @@ function Jumbotron(){
 function Shoes(props){
   return(
     <div>
-            <img src={`https://codingapple1.github.io/shop/shoes${props.i+1}.jpg`} alt="" />
-            <h4>{Data[props.i].title}</h4>
-            <p> {Data[props.i].content} & {Data[props.i].price} </p>
+        <img src={`https://codingapple1.github.io/shop/shoes${props.i+1}.jpg`} alt="" />
+        <h4>{props.shoes.title}</h4>
+        <p> {props.shoes.content} & {props.shoes.price} </p>
     </div>
   );
 }
+
 
 
 
