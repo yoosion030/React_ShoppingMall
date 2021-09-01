@@ -1,5 +1,4 @@
-export default[
-    {
+export default [{
         id: 0,
         title: "White and Black",
         content: "Born in France",
@@ -19,4 +18,5 @@ export default[
         content: "Born in the States",
         price: 130000
     }
+
 ]

@@ -10,7 +10,6 @@ import axios from 'axios';
 
 function App() {
 
-  
   let [shoes,shoesRevise] = useState(Data);
   return (
     <div className="App">
@@ -49,7 +48,18 @@ function App() {
             })
           }
           </div>
-          <button className="btn btn-primary">더보기</button>
+          <button className="btn btn-primary" onClick={()=> {
+            axios.get('https://codingapple1.github.io/shop/data2.json')
+            .then((result)=>{
+              console.log('성공');
+              return(
+                <div>안녕</div>
+              );
+            })
+            .catch(()=>{
+              console.log('실패');
+            })
+          }}>더보기</button>
         </div>
       </Route>
       <Route path="/detail/:id">
@@ -67,13 +77,15 @@ function Jumbotron(){
 }
 function Shoes(props){
   return(
-    <div className="col-md-4">
-            <img src={'https://codingapple1.github.io/shop/shoes'+ (props.i+1) + '.jpg'} alt="" />
+    <div>
+            <img src={`https://codingapple1.github.io/shop/shoes${props.i+1}.jpg`} alt="" />
             <h4>{Data[props.i].title}</h4>
             <p> {Data[props.i].content} & {Data[props.i].price} </p>
     </div>
-  )
+  );
 }
+
+
 
 
 export default App;

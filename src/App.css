@@ -22,10 +22,18 @@ a {
     font-family: 'ZCOOL KuaiLe', cursive;
 }
 
-.col-md-4 > img {
+img {
+    display: block;
     width: 100%;
 }
-
+.col-md-4{
+    margin: 0;
+}
 .shoes {
+    width: 230px;
     color:black;
+}
+
+.row {
+    justify-content: center;
 }
