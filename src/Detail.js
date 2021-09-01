@@ -19,12 +19,11 @@ let Title = styled.h4`
 function Detail(props){
 
   let [alert,alertRevise] = useState(true);
-  let [answer,answerRevise] = useState();
+  let [answer,answerRevise] = useState('');
   useEffect(()=>{
-    setTimeout(()=>{
-      alertRevise(false);
-    },2000)
-  });
+    let timer = setTimeout(()=>{alertRevise(false)},2000);
+    return () => { clearTimeout(timer)}    
+  },[]);
 
   let { id } = useParams();
   let history = useHistory();
@@ -36,6 +35,8 @@ function Detail(props){
         <Box>
           <Title className="red">Detail</Title>
         </Box>
+        <input type="text" onChange = {(e)=> {answerRevise(e.target.value)}} />
+        {answer}
         {
           alert === true
           ? (
@@ -45,7 +46,7 @@ function Detail(props){
           : null
         }
         <div className="col-md-6">
-          <img src={'https://codingapple1.github.io/shop/shoes'+ id + '.jpg'} width="100%" />
+        <img src={'https://codingapple1.github.io/shop/shoes'+ id + '.jpg'} width="100%" />
         </div>
         <div className="col-md-6 mt-4">
           <h4 className="pt-5">{find.title}</h4>

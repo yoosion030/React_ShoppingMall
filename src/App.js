@@ -6,6 +6,7 @@ import Data from './data.js';
 import Detail from './Detail.js';
 
 import { Link, Route, Switch } from 'react-router-dom';
+import axios from 'axios';
 
 function App() {
 
@@ -41,11 +42,14 @@ function App() {
           {
             shoes.map(function(a,i){
               return (
-                <Shoes i = {i}></Shoes>
+                  <Link to={'/detail/'+ i} className="shoes">
+                    <Shoes i = {i} ></Shoes>
+                  </Link>
               );
             })
           }
           </div>
+          <button className="btn btn-primary">더보기</button>
         </div>
       </Route>
       <Route path="/detail/:id">
