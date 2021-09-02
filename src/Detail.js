@@ -21,6 +21,7 @@ function Detail(props){
   let [alert,alertRevise] = useState(true);
   let [answer,answerRevise] = useState('');
   useEffect(()=>{
+
     let timer = setTimeout(()=>{alertRevise(false)},2000);
     return () => { clearTimeout(timer)}    
   },[]);
@@ -29,6 +30,11 @@ function Detail(props){
   let history = useHistory();
   let find = props.shoes.find(x => x.id == id);
 
+  function minusRemain(){
+    let newRemain = [...props.remain];
+    newRemain[id] = newRemain[id] - 1;
+    props.remainRevise(newRemain);
+  }
   return(
     <div className="container">
       <div className="row">
@@ -36,7 +42,6 @@ function Detail(props){
           <Title className="red">Detail</Title>
         </Box>
         <input type="text" onChange = {(e)=> {answerRevise(e.target.value)}} />
-        {answer}
         {
           alert === true
           ? (
@@ -52,7 +57,12 @@ function Detail(props){
           <h4 className="pt-5">{find.title}</h4>
           <p>{find.content}</p>
           <p>{find.price} 원</p>
-          <button className="btn btn-danger">주문하기</button> 
+          <Info remain={props.remain} id={id}> </Info>
+
+          <p></p>
+          <button className="btn btn-danger" onClick={()=>{
+            minusRemain()
+          }}>주문하기</button> 
           <button className="btn btn-danger" onClick={()=>{
             history.goBack();
           }}>뒤로가기</button> 
@@ -60,6 +70,12 @@ function Detail(props){
       </div>
     </div>  
   );
+}
+
+function Info(props){
+  return(
+    <p>재고 : {props.remain[props.id]}</p>
+  )
 }
 
 export default Detail;

@@ -11,12 +11,15 @@ import axios from 'axios';
 function App() {
 
   let [shoes,shoesRevise] = useState(Data);
+  let [roading,roadingRevise] = useState(true);
+  let [remain,remainRevise] = useState([10,11,12]);
+  let cnt =  0;
 
   return (
     <div className="App">
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand as = {Link} to = "/">React-Bootstrap</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -50,18 +53,28 @@ function App() {
           }
           </div>
           <button className="btn btn-primary" onClick={()=> {
+
+            // axios.post('서버URL',전달할 데이터);
+
+
             axios.get('https://codingapple1.github.io/shop/data2.json')
             .then((result)=>{
               shoesRevise( [...shoes, ...result.data] );
+              roadingRevise(false);
             })
             .catch(()=>{
 
             })
           }}>더보기</button>
+          {
+            roading === true
+            ? <Roading></Roading>
+            : null
+          }
         </div>
       </Route>
       <Route path="/detail/:id">
-        <Detail shoes={shoes}/>
+        <Detail shoes={shoes} remain={remain} remainRevise={remainRevise}/>
       </Route>
     </div>
   );
@@ -80,6 +93,11 @@ function Shoes(props){
         <h4>{props.shoes.title}</h4>
         <p> {props.shoes.content} & {props.shoes.price} </p>
     </div>
+  );
+}
+function Roading(){
+  return(
+    <div>로딩중입니다.</div>
   );
 }
 
