@@ -3,7 +3,6 @@ import { findByTestId } from '@testing-library/react';
 import { useState,useEffect } from 'react';
 import { useHistory,useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import './Detail.scss';
 
 let Box = styled.div`
   padding : 20px;
