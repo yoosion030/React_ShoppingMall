@@ -57,7 +57,11 @@ function Detail(props){
           <h4 className="pt-5">{find.title}</h4>
           <p>{find.content}</p>
           <p>{find.price} 원</p>
-          <Info remain={props.remain} id={id}> </Info>
+          {
+            props.remain[id] > 0
+            ? <Info remain={props.remain} id={id}> </Info>
+            : <div>품절입니다.</div>
+          }
 
           <p></p>
           <button className="btn btn-danger" onClick={()=>{
