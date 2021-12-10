@@ -1,5 +1,25 @@
 import React, { useState } from 'react'
+import { Link, Route, Routes } from 'react-router-dom'
 import Data from './data.js'
+import Detail from './Detail.js'
+
+const Shoes = () => {
+  let [shoes, setShoes] = useState(Data)
+
+  return (
+    <div className="container">
+      <div className="row">
+        {shoes.map((a, i) => {
+          return (
+            <>
+              <Product shoes={shoes[i]} key={i}></Product>
+            </>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
 
 function Product(props) {
   return (
@@ -14,22 +34,10 @@ function Product(props) {
       <p>
         {props.shoes.content} & {props.shoes.price}
       </p>
+      <Link to="/detail">
+        <button className="btn btn-danger">자세히 보기</button>
+      </Link>
     </div>
   )
 }
-
-const Shoes = () => {
-  let [shoes, setShoes] = useState(Data)
-
-  return (
-    <div className="container">
-      <div className="row">
-        {shoes.map((a, i) => {
-          return <Product shoes={shoes[i]} key={i}></Product>
-        })}
-      </div>
-    </div>
-  )
-}
-
 export default Shoes

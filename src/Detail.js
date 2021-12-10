@@ -7,16 +7,15 @@ const Detail = () => {
   let { id } = useParams()
   let [shoes, setShoes] = useState(Data)
 
-  // photos, setPhotos 비구조화 할당
-  let [photos, setPhotos] = useState([])
+  let [test, setTest] = useState([])
   function searchApi() {
     const url = 'https://jsonplaceholder.typicode.com/posts/1'
     axios
       .get(url)
       .then(function (response) {
-        setPhotos(response.data)
+        setTest(response.data)
         // console.log('성공')
-        console.log(photos.title)
+        console.log(test.title)
       })
       .catch(function (error) {
         console.log('실패')
@@ -46,7 +45,7 @@ const Detail = () => {
               뒤로가기
             </button>
           </div>
-          {photos.title}
+          {test.title}
         </div>
       </div>
     </>

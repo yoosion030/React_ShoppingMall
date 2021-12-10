@@ -1,4 +1,3 @@
-import './App.css'
 import Shoes from './Shoes'
 import Detail from './Detail'
 import Header from './Header'
@@ -10,7 +9,7 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path="/" element={<Shoes />}></Route>
-        <Route path="/detail" element={<Detail />}></Route>
+        <Route path="/detail/:id" element={<Detail />}></Route>
       </Routes>
     </BrowserRouter>
   )
