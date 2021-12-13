@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes, useParams } from 'react-router-dom'
 import Data from './data.js'
 import Detail from './Detail.js'
 
@@ -34,7 +34,7 @@ function Product(props) {
       <p>
         {props.shoes.content} & {props.shoes.price}
       </p>
-      <Link to="/detail">
+      <Link to={`detail/${props.shoes.id}`}>
         <button className="btn btn-danger">자세히 보기</button>
       </Link>
     </div>
